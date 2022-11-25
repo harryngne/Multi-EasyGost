@@ -68,7 +68,7 @@ function check_new_ver() {
     ct_new_ver="2.11.2"
     echo -e "${Error} gost 最新版本获取失败，正在下载v${ct_new_ver}版"
   else
-    echo -e "${Info} gost 目前最新版本为 ${ct_new_ver}"
+    echo -e "${Info} gost phiên bản mới nhất là ${ct_new_ver}"
   fi
 }
 function check_file() {
