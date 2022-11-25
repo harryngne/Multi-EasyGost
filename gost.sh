@@ -895,30 +895,30 @@ update_sh() {
 }
 
 update_sh
-echo && echo -e "                 gost 一键安装配置脚本"${Red_font_prefix}[${shell_version}]${Font_color_suffix}"
+echo && echo -e "                 Gost tập lệnh cấu hình cài đặt bằng một cú nhấp chuột"${Red_font_prefix}[${shell_version}]${Font_color_suffix}"
   ----------- KANIKIG -----------
-  特性: (1)本脚本采用systemd及gost配置文件对gost进行管理
-        (2)能够在不借助其他工具(如screen)的情况下实现多条转发规则同时生效
-        (3)机器reboot后转发不失效
-  功能: (1)tcp+udp不加密转发, (2)中转机加密转发, (3)落地机解密对接转发
-  帮助文档：https://github.com/KANIKIG/Multi-EasyGost
+  Các tính năng: (1) Tập lệnh này sử dụng các tệp cấu hình systemd và gost để quản lý gost
+        (2) Nhiều quy tắc chuyển tiếp có thể có hiệu lực cùng lúc mà không cần sử dụng các công cụ khác (chẳng hạn như màn hình)
+        (3) Quá trình chuyển tiếp không bị lỗi sau khi máy khởi động lại
+  Chức năng: (1) chuyển tiếp không được mã hóa tcp+udp, (2) Chuyển tiếp được mã hóa máy chuyển tiếp, (3) Chuyển tiếp docking được giải mã của máy hạ cánh
+  Tài liệu trợ giúp：https://github.com/KANIKIG/Multi-EasyGost
 
- ${Green_font_prefix}1.${Font_color_suffix} 安装 gost
- ${Green_font_prefix}2.${Font_color_suffix} 更新 gost
- ${Green_font_prefix}3.${Font_color_suffix} 卸载 gost
+ ${Green_font_prefix}1.${Font_color_suffix} Cài đặt gost
+ ${Green_font_prefix}2.${Font_color_suffix} Cập nhật gost
+ ${Green_font_prefix}3.${Font_color_suffix} Gỡ cài đặt gost
 ————————————
- ${Green_font_prefix}4.${Font_color_suffix} 启动 gost
- ${Green_font_prefix}5.${Font_color_suffix} 停止 gost
- ${Green_font_prefix}6.${Font_color_suffix} 重启 gost
+ ${Green_font_prefix}4.${Font_color_suffix} Chạy gost
+ ${Green_font_prefix}5.${Font_color_suffix} Tắt gost
+ ${Green_font_prefix}6.${Font_color_suffix} Khởi động lại gost
 ————————————
- ${Green_font_prefix}7.${Font_color_suffix} 新增gost转发配置
- ${Green_font_prefix}8.${Font_color_suffix} 查看现有gost配置
- ${Green_font_prefix}9.${Font_color_suffix} 删除一则gost配置
+ ${Green_font_prefix}7.${Font_color_suffix} Thêm cấu hình chuyển tiếp gost
+ ${Green_font_prefix}8.${Font_color_suffix} Xem cấu hình gost hiện đang chạy
+ ${Green_font_prefix}9.${Font_color_suffix} Xóa cấu hình gost
 ————————————
- ${Green_font_prefix}10.${Font_color_suffix} gost定时重启配置
- ${Green_font_prefix}11.${Font_color_suffix} 自定义TLS证书配置
+ ${Green_font_prefix}10.${Font_color_suffix} gost cấu hình khởi động lại theo thời gian
+ ${Green_font_prefix}11.${Font_color_suffix} Cấu hình chứng chỉ TLS tùy chỉnh
 ————————————" && echo
-read -e -p " 请输入数字 [1-9]:" num
+read -e -p " Vui lòng nhập số [1-9]:" num
 case "$num" in
 1)
   Install_ct
@@ -945,7 +945,7 @@ case "$num" in
   writeconf
   conflast
   systemctl restart gost
-  echo -e "配置已生效，当前配置如下"
+  echo -e "Cấu hình đã có hiệu lực, cấu hình hiện tại như sau"
   echo -e "--------------------------------------------------------"
   show_all_conf
   ;;
@@ -954,7 +954,7 @@ case "$num" in
   ;;
 9)
   show_all_conf
-  read -p "请输入你要删除的配置编号：" numdelete
+  read -p "Vui lòng nhập số cấu hình bạn muốn xóa：" numdelete
   if echo $numdelete | grep -q '[0-9]'; then
     sed -i "${numdelete}d" $raw_conf_path
     rm -rf /etc/gost/config.json
@@ -962,9 +962,9 @@ case "$num" in
     writeconf
     conflast
     systemctl restart gost
-    echo -e "配置已删除，服务已重启"
+    echo -e "Đã xóa cấu hình, khởi động lại dịch vụ"
   else
-    echo "请输入正确数字"
+    echo "Vui lòng nhập số chính xác"
   fi
   ;;
 10)
@@ -974,6 +974,6 @@ case "$num" in
   cert
   ;;
 *)
-  echo "请输入正确数字 [1-9]"
+  echo "Vui lòng nhập số chính xác [1-9]"
   ;;
 esac
